@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Track films you've watched. Save films you want to see. Director's Cut.">
+    <meta name="description" content="Track films you've watched. Save films you want to see. Queued.">
+    <link rel="icon" type="image/png" href="/queued.png">
     <title>Queued</title>
 </head>
 <body>
@@ -26,7 +27,6 @@
             <p class="hero-subtitle">Rate, review, and discover films with Queued — built for people who take cinema seriously.</p>
             <a href="/register" class="btn-primary">Get started</a>
         </div>
-
     </section>
 
 </body>
