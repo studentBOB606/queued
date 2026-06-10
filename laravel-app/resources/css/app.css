@@ -9,3 +9,78 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 8rem;
+    background-color: #111111;
+    border-bottom: 1px solid #222222;
+    gap: 2rem;
+    position: relative;
+}
+
+nav .nav-logo {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+nav .nav-links a {
+    color: #999999;
+    text-decoration: none;
+    font-size: 0.97rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    transition: color 0.15s;
+}
+
+nav .nav-links a:hover {
+    color: #ffffff;
+}
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #1e1e1e;
+    border: 1px solid #2e2e2e;
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem;
+    flex-shrink: 0;
+    color: #666666;
+}
+
+.nav-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #cccccc;
+    font-size: 0.82rem;
+    width: 160px;
+}
+
+.nav-search input::placeholder {
+    color: #555555;
+}
+
