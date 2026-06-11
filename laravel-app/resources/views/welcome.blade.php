@@ -27,16 +27,14 @@
         <div class="hero-backdrop"></div>
 
         <div class="hero-content">
-            <p class="hero-eyebrow">Your personal film journal</p>
+            <a class="hero-eyebrow">Your personal film journal</a>
             <h1 class="hero-title">Track every film you've ever watched.</h1>
             <p class="hero-subtitle">Rate, review, and discover films with Queued — built for people who take cinema seriously.</p>
             <a href="/register" class="btn-primary">Get started</a>
+            <p class="hero-subtitle1">The social network for film lovers.</p>
         </div>
     </section>
 
-    <div>
-        <p>The social network for film lovers.</p>
-    </div>
 
 
 </body>
