@@ -27,7 +27,7 @@
         <div class="hero-backdrop"></div>
 
         <div class="hero-content">
-            <a class="hero-eyebrow">Your personal film journal</a>
+            <p class="hero-eyebrow">Your personal film journal</p>
             <h1 class="hero-title">Track every film you've ever watched.</h1>
             <p class="hero-subtitle">Rate, review, and discover films with Queued — built for people who take cinema seriously.</p>
             <a href="/register" class="btn-primary">Get started</a>
