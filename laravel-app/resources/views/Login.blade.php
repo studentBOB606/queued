@@ -1,12 +1,14 @@
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Track films you've watched. Save films you want to see. Queued.">
+    <meta name="description" content="Sign in to Queued — track films you've watched and save ones you want to see.">
     <link rel="icon" type="image/png" href="/queued.png">
-    <title>Queued</title>
+    <title>Sign In — Queued</title>
     @vite(['resources/css/app.css'])
-</head><body>
+</head>
+<body>
 
 <nav>
     <a href="/" class="nav-logo">Queued</a>
@@ -21,7 +23,76 @@
     </div>
 </nav>
 
+<main class="login-page">
+    <div class="login-container">
+
+        {{-- Tab switcher --}}
+        <div class="auth-tabs">
+            <button class="auth-tab {{ session('_auth_form') !== 'signup' ? 'active' : '' }}" onclick="showTab('login')">Sign In</button>
+            <button class="auth-tab {{ session('_auth_form') === 'signup' ? 'active' : '' }}" onclick="showTab('signup')">Sign Up</button>
+        </div>
+
+        @if ($errors->any())
+            <div class="login-error">{{ $errors->first() }}</div>
+        @endif
+
+        {{-- Login form --}}
+        <div id="tab-login" class="auth-panel {{ session('_auth_form') === 'signup' ? 'hidden' : '' }}">
+            <form method="POST" action="/login" class="login-form">
+                @csrf
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" value="{{ old('email') }}" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+        </div>
+
+        {{-- Signup form --}}
+        <div id="tab-signup" class="auth-panel {{ session('_auth_form') !== 'signup' ? 'hidden' : '' }}">
+            <form method="POST" action="/register" class="login-form">
+                @csrf
+                <div class="form-group">
+                    <label for="signup-name">Name</label>
+                    <input type="text" id="signup-name" name="name" value="{{ old('name') }}" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" value="{{ old('email') }}" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" placeholder="Min. 8 characters" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password-confirm">Confirm Password</label>
+                    <input type="password" id="signup-password-confirm" name="password_confirmation" placeholder="Repeat password" required>
+                </div>
+                <button type="submit" class="login-btn">Create Account</button>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<script>
+function showTab(tab) {
+    document.getElementById('tab-login').classList.toggle('hidden', tab !== 'login');
+    document.getElementById('tab-signup').classList.toggle('hidden', tab !== 'signup');
+    document.querySelectorAll('.auth-tab').forEach((btn, i) => {
+        btn.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'signup'));
+    });
+}
+
+// If there are validation errors, stay on the correct tab
+@if ($errors->has('name') || $errors->has('password_confirmation'))
+    showTab('signup');
+@endif
+</script>
+
 </body>
 </html>
-
-<?php
