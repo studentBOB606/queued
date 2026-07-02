@@ -84,6 +84,126 @@ nav .nav-links a:hover {
     color: #555555;
 }
 
+.nav-logout {
+    background: none;
+    border: none;
+    color: #999999;
+    font-size: 0.97rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.nav-logout:hover {
+    color: #ffffff;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.nav-signin {
+    color: #999999;
+    text-decoration: none;
+    font-size: 0.97rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    transition: color 0.15s;
+}
+
+.nav-signin:hover {
+    color: #ffffff;
+}
+
+.nav-profile-wrap {
+    position: relative;
+}
+
+.nav-avatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background-color: #7c3aed !important;
+    color: #ffffff !important;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: background-color 0.2s;
+}
+
+.nav-avatar:hover {
+    background-color: #6c25df;
+}
+
+.nav-profile-wrap:hover .nav-profile-dropdown {
+    display: flex;
+}
+
+.nav-profile-dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    min-width: 160px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.nav-profile-name {
+    font-size: 0.8rem;
+    color: #555555;
+    padding: 0.6rem 1rem 0.4rem;
+    border-bottom: 1px solid #2a2a2a;
+    white-space: nowrap;
+}
+
+.nav-profile-dropdown a,
+.nav-profile-dropdown button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #cccccc;
+    font-size: 0.88rem;
+    padding: 0.55rem 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+    box-sizing: border-box;
+}
+
+.nav-profile-dropdown a:hover,
+.nav-profile-dropdown button:hover {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.nav-profile-dropdown form {
+    margin: 0;
+    border-top: 1px solid #2a2a2a;
+}
+
 /* Hero */
 .hero {
     position: relative;
@@ -179,5 +299,153 @@ p.hero-subtitle1 {
 
 .btn-primary:hover {
     background-color: #6c25df;
+}
+
+/* Login */
+.login-page {
+    min-height: calc(100vh - 57px);
+    background-color: #080808;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.login-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+}
+
+.login-sub {
+    font-size: 0.92rem;
+    color: #666666;
+    margin: -0.5rem 0 0;
+}
+
+.login-error {
+    background-color: #2a0a0a;
+    border: 1px solid #6b1c1c;
+    color: #f87171;
+    font-size: 0.85rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 6px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-group label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #888888;
+}
+
+.form-group input {
+    background-color: #111111;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: #e5e5e5;
+    font-size: 0.95rem;
+    padding: 0.6rem 0.85rem;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.form-group input::placeholder {
+    color: #444444;
+}
+
+.form-group input:focus {
+    border-color: #7c3aed;
+}
+
+.login-btn {
+    margin-top: 0.25rem;
+    background-color: #7c3aed;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.7rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #6c25df;
+}
+
+.login-footer {
+    font-size: 0.85rem;
+    color: #555555;
+    text-align: center;
+    margin: 0;
+}
+
+.login-footer a {
+    color: #9333ea;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Auth tabs */
+.auth-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #2a2a2a;
+    margin-bottom: 0.25rem;
+}
+
+.auth-tab {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.55rem 1.25rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.auth-tab.active {
+    color: #ffffff;
+    border-bottom-color: #7c3aed;
+}
+
+.auth-tab:hover:not(.active) {
+    color: #aaaaaa;
+}
+
+.auth-panel.hidden {
+    display: none;
 }
 
