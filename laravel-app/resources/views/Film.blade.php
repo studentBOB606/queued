@@ -44,7 +44,7 @@
             @forelse($trendingFilms as $film)
                 <div class="film-card">
                     @if($film->poster)
-                        <img src="{{ $film->poster }}" alt="{{ $film->title }}">
+                        <img src="{{ asset('storage/' . $film->poster) }}" alt="{{ $film->title }}">
                     @else
                         <div class="film-placeholder">
                             <span>{{ $film->title }}</span>
@@ -67,7 +67,7 @@
             @forelse($popularFilms as $film)
                 <div class="film-card">
                     @if($film->poster)
-                        <img src="{{ $film->poster }}" alt="{{ $film->title }}">
+                        <img src="{{ asset('storage/' . $film->poster) }}" alt="{{ $film->title }}">
                     @else
                         <div class="film-placeholder">
                             <span>{{ $film->title }}</span>
