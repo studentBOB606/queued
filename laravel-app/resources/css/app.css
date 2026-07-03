@@ -448,4 +448,74 @@ p.hero-subtitle1 {
 .auth-panel.hidden {
     display: none;
 }
+body {
+    margin: 0;
+    background-color: #1f1f1f;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+.films-page {
+    background-color: #d9d9d9;
+    padding: 35px 0 60px;
+}
+
+.film-section {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto 25px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+    margin-bottom: 8px;
+}
+
+.section-header h2 {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0 0 5px;
+    color: white;
+}
+
+.section-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.film-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.film-card {
+    height: 190px;
+    background-color: #575757;
+    border: 3px solid white;
+    overflow: hidden;
+}
+
+.film-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.film-placeholder {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.empty-message {
+    color: #333;
+}

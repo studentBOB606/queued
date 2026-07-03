@@ -12,7 +12,7 @@ class Film extends Model
         'title',
         'description',
         'release_year',
-        'genre_id',
+        'genre',
         'duration',
         'poster',
         'rating',
