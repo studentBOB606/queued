@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FilmController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,9 +12,9 @@ Route::get('/register', function () {
     return view('signup');
 });
 Route::post('/register', [AuthController::class, 'signup']);
-Route::get('/films', function () {
-    return view('Film');
-});
+
+Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+
 Route::get('/login', function () {
     return view('Login');
 });
