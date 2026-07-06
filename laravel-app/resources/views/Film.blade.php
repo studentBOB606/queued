@@ -18,10 +18,10 @@
         <li><a href="/list">List</a></li>
     </ul>
     <div class="nav-right">
-        <div class="nav-search">
+        <form class="nav-search" action="/search" method="GET">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" placeholder="Search films...">
-        </div>
+            <input type="text" name="q" placeholder="Search films..." value="{{ request('q') }}" autocomplete="off">
+        </form>
         @auth
             <div class="nav-profile-wrap">
                 <a href="/profile" class="nav-avatar" title="{{ Auth::user()->name }}">
@@ -54,15 +54,15 @@
 
         <div class="film-row">
             @forelse($trendingFilms as $film)
-                <a href="{{ route('films.show', $film) }}" class="film-card">
-                    @if($film->poster)
-                        <img src="{{ asset('storage/' . $film->poster) }}" alt="{{ $film->title }}">
+                <div class="film-card">
+                    @if(!empty($film['poster_path']))
+                        <img src="https://image.tmdb.org/t/p/w300{{ $film['poster_path'] }}" alt="{{ $film['title'] }}">
                     @else
                         <div class="film-placeholder">
-                            <span>{{ $film->title }}</span>
+                            <span>{{ $film['title'] }}</span>
                         </div>
                     @endif
-                </a>
+                </div>
             @empty
                 <p class="empty-message">No trending films yet.</p>
             @endforelse
@@ -77,15 +77,15 @@
 
         <div class="film-row">
             @forelse($popularFilms as $film)
-                <a href="{{ route('films.show', $film) }}" class="film-card">
-                    @if($film->poster)
-                        <img src="{{ asset('storage/' . $film->poster) }}" alt="{{ $film->title }}">
+                <div class="film-card">
+                    @if(!empty($film['poster_path']))
+                        <img src="https://image.tmdb.org/t/p/w300{{ $film['poster_path'] }}" alt="{{ $film['title'] }}">
                     @else
                         <div class="film-placeholder">
-                            <span>{{ $film->title }}</span>
+                            <span>{{ $film['title'] }}</span>
                         </div>
                     @endif
-                </a>
+                </div>
             @empty
                 <p class="empty-message">No popular films yet.</p>
             @endforelse

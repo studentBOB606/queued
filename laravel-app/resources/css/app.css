@@ -456,67 +456,105 @@ body {
 }
 
 .films-page {
-    background-color: rebeccapurple;
-    padding: 35px 0 60px;
+    background-color: #080808;
+    padding: 3rem 8rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 .film-section {
-    width: 80%;
-    max-width: 900px;
-    margin: 0 auto 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid white;
-    margin-bottom: 8px;
+    align-items: baseline;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 0.6rem;
 }
 
 .section-header h2 {
-    font-size: 14px;
-    font-weight: normal;
-    margin: 0 0 5px;
-    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9333ea;
+    margin: 0;
 }
 
 .section-header a {
-    color: white;
+    color: #555555;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.15s;
+}
+
+.section-header a:hover {
+    color: #9333ea;
 }
 
 .film-row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
 }
 
 .film-card {
-    height: 230px;
-    background-color: #575757;
-    border: 3px solid white;
+    aspect-ratio: 2 / 3;
+    background-color: #111111;
+    border-radius: 6px;
     overflow: hidden;
+    border: 1px solid #1e1e1e;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: white;
 }
+
+.film-card:hover {
+    transform: translateY(-4px);
+    border-color: #7c3aed;
+}
+
 .film-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .film-placeholder {
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #444444;
+    font-size: 0.75rem;
     text-align: center;
-    padding: 10px;
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 .empty-message {
-    color: #333;
+    color: #555555;
+    font-size: 0.85rem;
+}
+
+.search-count {
+    font-size: 0.75rem;
+    color: #555555;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .profile-circle {

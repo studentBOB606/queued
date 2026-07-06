@@ -17,9 +17,9 @@
         <li><a href="/list">List</a></li>
     </ul>
 
-    <div class="nav-search">
-        <input type="text" placeholder="Search films...">
-    </div>
+    <form class="nav-search" action="/search" method="GET">
+        <input type="text" name="q" placeholder="Search films..." value="{{ request('q') }}" autocomplete="off">
+    </form>
 
     <div class="profile-circle">Y</div>
 </nav>
