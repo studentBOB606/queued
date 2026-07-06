@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $film->title }} - Queued</title>
+    <title>{{ $film['title'] ?? 'Film' }} - Queued</title>
 
     @vite(['resources/css/app.css'])
 </head>
@@ -17,11 +17,13 @@
         <li><a href="/list">List</a></li>
     </ul>
 
-    <form class="nav-search" action="/search" method="GET">
-        <input type="text" name="q" placeholder="Search films..." value="{{ request('q') }}" autocomplete="off">
-    </form>
+    <div class="nav-right">
+        <div class="nav-search">
+            <input type="text" placeholder="Search films...">
+        </div>
 
-    <div class="profile-circle">Y</div>
+        <div class="profile-circle">Y</div>
+    </div>
 </nav>
 
 <main class="film-info-page">
@@ -29,54 +31,69 @@
     <section class="film-info-wrapper">
 
         <div class="film-info-poster-box">
-            @if($film->poster)
-                <img src="{{ asset('storage/' . $film->poster) }}" alt="{{ $film->title }}">
+            @if(!empty($film['poster_path']))
+                <img src="https://image.tmdb.org/t/p/w500{{ $film['poster_path'] }}" alt="{{ $film['title'] }}">
             @else
                 <div class="film-info-placeholder">
-                    {{ $film->title }}
+                    {{ $film['title'] ?? 'No poster' }}
                 </div>
             @endif
         </div>
 
         <div class="film-info-card">
-            <h1>{{ $film->title }}</h1>
+            <h1>{{ $film['title'] ?? 'Unknown title' }}</h1>
 
             <div class="film-rating">
+                @php
+                    $rating = $film['vote_average'] ?? 0;
+                    $stars = round($rating / 2);
+                @endphp
+
                 @for ($i = 1; $i <= 5; $i++)
-                    @if($film->rating && $i <= round($film->rating / 2))
+                    @if($i <= $stars)
                         ★
                     @else
                         ☆
                     @endif
                 @endfor
 
-                <span>{{ $film->rating ?? 'No rating' }}/10</span>
+                <span>{{ number_format($rating, 1) }}/10</span>
             </div>
 
             <p class="film-description">
-                {{ $film->description }}
+                {{ $film['overview'] ?? 'No description available.' }}
             </p>
 
             <div class="film-details-grid">
                 <div>
-                    <span>Release year</span>
-                    <strong>{{ $film->release_year }}</strong>
-                </div>
-
-                <div>
-                    <span>Genre</span>
-                    <strong>{{ $film->genre ?? 'Unknown' }}</strong>
+                    <span>Release date</span>
+                    <strong>{{ $film['release_date'] ?? 'Unknown' }}</strong>
                 </div>
 
                 <div>
                     <span>Duration</span>
-                    <strong>{{ $film->duration }} min</strong>
+                    <strong>{{ $film['runtime'] ?? 'Unknown' }} min</strong>
                 </div>
 
+                <div>
+                    <span>Genre</span>
+                    <strong>
+                        @if(!empty($film['genres']))
+                            {{ collect($film['genres'])->pluck('name')->join(', ') }}
+                        @else
+                            Unknown
+                        @endif
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Language</span>
+                    <strong>{{ strtoupper($film['original_language'] ?? 'Unknown') }}</strong>
+                </div>
             </div>
 
             <div class="film-actions">
-                <a href="/films" class="back-button">Back to films</a>
+                <a href="{{ route('films.index') }}" class="back-button">Back to films</a>
                 <button class="watch-button">Add to list</button>
             </div>
         </div>
