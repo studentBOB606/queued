@@ -341,6 +341,15 @@ p.hero-subtitle1 {
     border-radius: 6px;
 }
 
+.login-success {
+    background-color: #0a1f0a;
+    border: 1px solid #1c6b1c;
+    color: #86efac;
+    font-size: 0.85rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 6px;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
