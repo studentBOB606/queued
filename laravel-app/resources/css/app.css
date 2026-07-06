@@ -558,6 +558,33 @@ body {
     font-size: 0.85rem;
 }
 
+.list-remove-btn {
+    background-color: rgba(0,0,0,0.7);
+    border: 1px solid #444;
+    color: #aaaaaa;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.list-remove-btn:hover {
+    background-color: #7c3aed;
+    color: #ffffff;
+    border-color: #7c3aed;
+}
+
+.list-feedback {
+    color: #86efac;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
 .search-count {
     font-size: 0.75rem;
     color: #555555;

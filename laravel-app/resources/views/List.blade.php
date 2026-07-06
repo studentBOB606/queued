@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Track films you've watched. Save films you want to see. Queued.">
     <link rel="icon" type="image/png" href="/queued.png">
-    <title>Queued</title>
+    <title>Queued - My List</title>
     @vite(['resources/css/app.css'])
 </head><body>
 
@@ -39,8 +39,45 @@
     </div>
 </nav>
 
+<main class="films-page">
+
+    <section class="film-section">
+        <div class="section-header">
+            <h2>My List</h2>
+            @auth
+                <span class="search-count">{{ $films->count() }} {{ $films->count() === 1 ? 'film' : 'films' }}</span>
+            @endauth
+        </div>
+
+        @guest
+            <p class="empty-message" style="padding-top:2rem;">
+                <a href="/login" style="color:#9333ea;">Sign in</a> to save films to your list.
+            </p>
+        @else
+            @if($films->isEmpty())
+                <p class="empty-message" style="padding-top:2rem;">No films in your list yet. Browse <a href="/films" style="color:#9333ea;">Films</a> to add some.</p>
+            @else
+                <div class="film-row">
+                    @foreach($films as $film)
+                        <div class="film-card" style="position:relative;">
+                            @if($film->poster_path)
+                                <img src="https://image.tmdb.org/t/p/w300{{ $film->poster_path }}" alt="{{ $film->title }}">
+                            @else
+                                <div class="film-placeholder"><span>{{ $film->title }}</span></div>
+                            @endif
+                            <form method="POST" action="/list/{{ $film->tmdb_id }}" style="position:absolute;top:6px;right:6px;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="list-remove-btn" title="Remove">✕</button>
+                            </form>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        @endguest
+    </section>
+
+</main>
 
 </body>
 </html>
-
-<?php

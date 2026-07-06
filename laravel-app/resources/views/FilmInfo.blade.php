@@ -108,7 +108,21 @@
 
             <div class="film-actions">
                 <a href="{{ route('films.index') }}" class="back-button">Back to films</a>
-                <button class="watch-button">Add to list</button>
+                @auth
+                    @if(session('added'))
+                        <span class="list-feedback">✓ Added to your list</span>
+                    @else
+                        <form method="POST" action="/list" style="display:inline;">
+                            @csrf
+                            <input type="hidden" name="tmdb_id" value="{{ $film['id'] }}">
+                            <input type="hidden" name="title" value="{{ $film['title'] }}">
+                            <input type="hidden" name="poster_path" value="{{ $film['poster_path'] ?? '' }}">
+                            <button type="submit" class="watch-button">Add to list</button>
+                        </form>
+                    @endif
+                @else
+                    <a href="/login" class="watch-button">Sign in to add</a>
+                @endauth
             </div>
         </div>
 
