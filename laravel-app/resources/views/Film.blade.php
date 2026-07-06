@@ -54,7 +54,7 @@
 
         <div class="film-row">
             @forelse($trendingFilms as $film)
-                <div class="film-card">
+                <a href="{{ route('films.show', $film) }}" class="film-card">
                     @if($film->poster)
                         <img src="{{ asset('storage/' . $film->poster) }}" alt="{{ $film->title }}">
                     @else
@@ -62,7 +62,7 @@
                             <span>{{ $film->title }}</span>
                         </div>
                     @endif
-                </div>
+                </a>
             @empty
                 <p class="empty-message">No trending films yet.</p>
             @endforelse
@@ -77,7 +77,7 @@
 
         <div class="film-row">
             @forelse($popularFilms as $film)
-                <div class="film-card">
+                <a href="{{ route('films.show', $film) }}" class="film-card">
                     @if($film->poster)
                         <img src="{{ asset('storage/' . $film->poster) }}" alt="{{ $film->title }}">
                     @else
@@ -85,7 +85,7 @@
                             <span>{{ $film->title }}</span>
                         </div>
                     @endif
-                </div>
+                </a>
             @empty
                 <p class="empty-message">No popular films yet.</p>
             @endforelse

@@ -19,4 +19,9 @@ class FilmController extends Controller
 
         return view('Film', compact('trendingFilms', 'popularFilms'));
     }
+
+    public function show(Film $film)
+    {
+        return view('FilmInfo', compact('film'));
+    }
 }

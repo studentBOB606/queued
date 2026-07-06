@@ -14,6 +14,7 @@ Route::get('/register', function () {
 Route::post('/register', [AuthController::class, 'signup']);
 
 Route::get('/films', [FilmController::class, 'index'])->name('films.index');
+Route::get('/films/{film}', [FilmController::class, 'show'])->name('films.show');
 
 Route::get('/login', function () {
     return view('Login');

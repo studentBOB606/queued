@@ -494,7 +494,7 @@ body {
 }
 
 .film-card {
-    height: 190px;
+    height: 230px;
     background-color: #575757;
     border: 3px solid white;
     overflow: hidden;
@@ -517,4 +517,140 @@ body {
 
 .empty-message {
     color: #333;
+}
+
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #6f35c5;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.film-card {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.film-info-page {
+    min-height: calc(100vh - 45px);
+    background-color: #6b35a0;
+    padding: 70px 0;
+}
+
+.film-info-wrapper {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 430px 1fr;
+    gap: 45px;
+    align-items: stretch;
+}
+
+.film-info-poster-box {
+    background-color: #575757;
+    border: 4px solid white;
+    border-radius: 8px;
+    min-height: 520px;
+    overflow: hidden;
+}
+
+.film-info-poster-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.film-info-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    padding: 25px;
+}
+
+.film-info-card {
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+    padding: 45px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.film-info-card h1 {
+    font-size: 36px;
+    margin: 0 0 25px;
+}
+
+.film-rating {
+    font-size: 26px;
+    color: #f5b400;
+    margin-bottom: 25px;
+}
+
+.film-rating span {
+    color: black;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.film-description {
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 35px;
+}
+
+.film-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 60px;
+    margin-bottom: 40px;
+}
+
+.film-details-grid span {
+    display: block;
+    color: #8b99bd;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.film-details-grid strong {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.film-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-button {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.watch-button {
+    background-color: #3459e6;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
 }
