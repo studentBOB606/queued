@@ -55,13 +55,13 @@
         @else
             <div class="film-row">
                 @foreach($results as $film)
-                    <div class="film-card">
+                    <a href="{{ route('films.show', ['film' => $film['id']]) }}" class="film-card">
                         @if(!empty($film['poster_path']))
                             <img src="https://image.tmdb.org/t/p/w300{{ $film['poster_path'] }}" alt="{{ $film['title'] }}">
                         @else
                             <div class="film-placeholder"><span>{{ $film['title'] }}</span></div>
                         @endif
-                    </div>
+                    </a>
                 @endforeach
             </div>
         @endif
