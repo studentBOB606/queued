@@ -7,22 +7,39 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class FilmController extends Controller
-{public function index()
+{public function index(Request $request)
 {
     $apiKey = env('TMDB_API_KEY');
+    $genre  = $request->input('genre');
+    $sort   = $request->input('sort', 'popularity.desc');
 
-    $trendingResponse = Http::get('https://api.themoviedb.org/3/trending/movie/week', [
-        'api_key' => $apiKey,
+    // Use discover whenever a genre or non-default sort is applied
+    if ($genre || $sort !== 'popularity.desc') {
+        $params = ['api_key' => $apiKey, 'sort_by' => $sort, 'vote_count.gte' => 100];
+        if ($genre) $params['with_genres'] = $genre;
+
+        $results = Http::get('https://api.themoviedb.org/3/discover/movie', $params)->json('results', []);
+
+        return view('Film', [
+            'filteredFilms' => $results,
+            'trendingFilms' => [],
+            'popularFilms'  => [],
+            'activeGenre'   => $genre ? (int)$genre : null,
+            'activeSort'    => $sort,
+        ]);
+    }
+
+    // Default: show trending + popular
+    $trendingFilms = Http::get('https://api.themoviedb.org/3/trending/movie/week', ['api_key' => $apiKey])->json('results', []);
+    $popularFilms  = Http::get('https://api.themoviedb.org/3/movie/popular', ['api_key' => $apiKey])->json('results', []);
+
+    return view('Film', [
+        'filteredFilms' => [],
+        'trendingFilms' => $trendingFilms,
+        'popularFilms'  => $popularFilms,
+        'activeGenre'   => null,
+        'activeSort'    => $sort,
     ]);
-
-    $popularResponse = Http::get('https://api.themoviedb.org/3/movie/popular', [
-        'api_key' => $apiKey,
-    ]);
-
-    $trendingFilms = $trendingResponse->json()['results'] ?? [];
-    $popularFilms = $popularResponse->json()['results'] ?? [];
-
-    return view('Film', compact('trendingFilms', 'popularFilms'));
 }
 
     public function show($film)

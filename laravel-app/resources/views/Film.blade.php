@@ -46,6 +46,46 @@
 
 <main class="films-page">
 
+    {{-- Filter bar --}}
+    <form method="GET" action="/films" class="films-filter-bar">
+        <input type="hidden" name="genre" value="{{ $activeGenre }}">
+        <div class="genre-pills">
+            <a href="/films" class="genre-pill {{ !$activeGenre ? 'active' : '' }}">All</a>
+            @foreach([28=>'Action',35=>'Comedy',27=>'Horror',878=>'Sci-Fi',18=>'Drama',12=>'Adventure',16=>'Animation',80=>'Crime',10749=>'Romance',53=>'Thriller'] as $id => $name)
+                <a href="/films?genre={{ $id }}&sort={{ $activeSort }}" class="genre-pill {{ $activeGenre === $id ? 'active' : '' }}">{{ $name }}</a>
+            @endforeach
+        </div>
+        <select name="sort" class="films-sort" onchange="this.form.submit()">
+            <option value="popularity.desc" {{ $activeSort === 'popularity.desc' ? 'selected' : '' }}>Most Popular</option>
+            <option value="vote_average.desc" {{ $activeSort === 'vote_average.desc' ? 'selected' : '' }}>Top Rated</option>
+            <option value="release_date.desc" {{ $activeSort === 'release_date.desc' ? 'selected' : '' }}>Latest</option>
+            <option value="revenue.desc" {{ $activeSort === 'revenue.desc' ? 'selected' : '' }}>Highest Grossing</option>
+        </select>
+    </form>
+
+    @if($activeGenre || count($filteredFilms))
+        {{-- Filtered results --}}
+        <section class="film-section">
+            <div class="section-header">
+                <h2>Results</h2>
+                <span class="search-count">{{ count($filteredFilms) }} films</span>
+            </div>
+            <div class="film-row">
+                @forelse($filteredFilms as $film)
+                    <a href="{{ route('films.show', ['film' => $film['id']]) }}" class="film-card">
+                        @if(!empty($film['poster_path']))
+                            <img src="https://image.tmdb.org/t/p/w500{{ $film['poster_path'] }}" alt="{{ $film['title'] }}">
+                        @else
+                            <div class="film-placeholder"><span>{{ $film['title'] }}</span></div>
+                        @endif
+                    </a>
+                @empty
+                    <p class="empty-message">No films found.</p>
+                @endforelse
+            </div>
+        </section>
+    @else
+
     <section class="film-section">
         <div class="section-header">
             <h2>Trending</h2>
@@ -87,6 +127,7 @@
             @endforeach
         </div>
     </section>
+    @endif
 
 </main>
 
