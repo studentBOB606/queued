@@ -38,6 +38,9 @@
 
         {{-- Login form --}}
         <div id="tab-login" class="auth-panel {{ session('_auth_form') === 'signup' ? 'hidden' : '' }}">
+            @if(session('status'))
+                <div class="login-success">{{ session('status') }}</div>
+            @endif
             <form method="POST" action="/login" class="login-form">
                 @csrf
                 <div class="form-group">
@@ -49,6 +52,7 @@
                     <input type="password" id="login-password" name="password" placeholder="••••••••" required>
                 </div>
                 <button type="submit" class="login-btn">Log In</button>
+                <p class="login-footer" style="margin-top:0.5rem;"><a href="/forgot-password">Forgot your password?</a></p>
             </form>
         </div>
 
