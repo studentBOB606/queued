@@ -37,4 +37,21 @@ class FilmController extends Controller
 
         return view('FilmInfo', compact('film'));
     }
+
+    public function search(Request $request)
+    {
+        $q       = trim($request->input('q', ''));
+        $results = collect();
+
+        if ($q) {
+            $data = Http::get('https://api.themoviedb.org/3/search/movie', [
+                'api_key' => env('TMDB_API_KEY'),
+                'query'   => $q,
+            ])->json('results', []);
+
+            $results = collect($data);
+        }
+
+        return view('search', compact('results', 'q'));
+    }
 }
