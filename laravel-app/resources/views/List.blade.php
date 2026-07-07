@@ -59,7 +59,7 @@
             @else
                 <div class="film-row">
                     @foreach($films as $film)
-                        <div class="film-card" style="position:relative;">
+                        <a href="{{ route('films.show', ['film' => $film->tmdb_id]) }}" class="film-card" style="position:relative;">
                             @if($film->poster_path)
                                 <img src="https://image.tmdb.org/t/p/w300{{ $film->poster_path }}" alt="{{ $film->title }}">
                             @else
@@ -70,7 +70,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="list-remove-btn" title="Remove">✕</button>
                             </form>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             @endif
