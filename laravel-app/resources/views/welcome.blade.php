@@ -95,6 +95,30 @@
             </div>
         </section>
 
+        <section class="film-section">
+            <div class="section-header">
+                <h2>Upcoming</h2>
+                <a href="/films">More</a>
+            </div>
+            <div class="upcoming-row">
+                @forelse($upcomingFilms as $film)
+                    <a href="{{ route('films.show', ['film' => $film['id']]) }}" class="upcoming-card">
+                        @if(!empty($film['poster_path']))
+                            <img src="https://image.tmdb.org/t/p/w400{{ $film['poster_path'] }}" alt="{{ $film['title'] }}">
+                        @else
+                            <div class="film-placeholder"><span>{{ $film['title'] }}</span></div>
+                        @endif
+                        <div class="upcoming-info">
+                            <span class="upcoming-title">{{ $film['title'] }}</span>
+                            <span class="upcoming-date">{{ \Carbon\Carbon::parse($film['release_date'])->format('M j, Y') }}</span>
+                        </div>
+                    </a>
+                @empty
+                    <p class="empty-message">No upcoming films.</p>
+                @endforelse
+            </div>
+        </section>
+
     </main>
 
 </body>
