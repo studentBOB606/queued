@@ -45,4 +45,15 @@ class ListController extends Controller
 
         return back()->with('removed', 'Film removed from your list.');
     }
+
+    public function rate(Request $request, $tmdb_id)
+    {
+        $request->validate(['rating' => ['required', 'integer', 'min:1', 'max:5']]);
+
+        UserList::where('user_id', Auth::id())
+            ->where('tmdb_id', $tmdb_id)
+            ->update(['rating' => $request->rating]);
+
+        return back();
+    }
 }

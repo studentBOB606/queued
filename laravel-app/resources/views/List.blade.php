@@ -59,18 +59,29 @@
             @else
                 <div class="film-row">
                     @foreach($films as $film)
-                        <a href="{{ route('films.show', ['film' => $film->tmdb_id]) }}" class="film-card" style="position:relative;">
-                            @if($film->poster_path)
-                                <img src="https://image.tmdb.org/t/p/w300{{ $film->poster_path }}" alt="{{ $film->title }}">
-                            @else
-                                <div class="film-placeholder"><span>{{ $film->title }}</span></div>
-                            @endif
-                            <form method="POST" action="/list/{{ $film->tmdb_id }}" style="position:absolute;top:6px;right:6px;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="list-remove-btn" title="Remove">✕</button>
-                            </form>
-                        </a>
+                        <div class="list-card">
+                            <a href="{{ route('films.show', ['film' => $film->tmdb_id]) }}" class="film-card">
+                                @if($film->poster_path)
+                                    <img src="https://image.tmdb.org/t/p/w300{{ $film->poster_path }}" alt="{{ $film->title }}">
+                                @else
+                                    <div class="film-placeholder"><span>{{ $film->title }}</span></div>
+                                @endif
+                            </a>
+                            <div class="list-card-footer">
+                                <form method="POST" action="/list/{{ $film->tmdb_id }}/rate" class="star-form">
+                                    @csrf
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <button type="submit" name="rating" value="{{ $i }}"
+                                            class="star-btn {{ $film->rating >= $i ? 'filled' : '' }}">★</button>
+                                    @endfor
+                                </form>
+                                <form method="POST" action="/list/{{ $film->tmdb_id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="list-remove-btn" title="Remove">✕</button>
+                                </form>
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             @endif

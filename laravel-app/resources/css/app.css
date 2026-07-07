@@ -637,6 +637,49 @@ body {
     border-color: #7c3aed;
 }
 
+/* List card with star rating */
+.list-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.list-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2px;
+}
+
+.star-form {
+    display: flex;
+    gap: 1px;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    color: #333333;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.1s, transform 0.1s;
+}
+
+.star-btn.filled {
+    color: #9333ea;
+}
+
+.star-btn:hover,
+.star-form:hover .star-btn {
+    color: #7c3aed;
+}
+
+.star-form .star-btn:hover ~ .star-btn {
+    color: #333333;
+}
+
 .list-feedback {
     color: #86efac;
     font-size: 0.85rem;

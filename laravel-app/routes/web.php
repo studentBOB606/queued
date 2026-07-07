@@ -29,6 +29,7 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 Route::get('/list', [ListController::class, 'index']);
 Route::post('/list', [ListController::class, 'store'])->name('list.store');
 Route::delete('/list/{tmdb_id}', [ListController::class, 'destroy'])->name('list.destroy');
+Route::post('/list/{tmdb_id}/rate', [ListController::class, 'rate'])->name('list.rate');
 Route::get('/profile', function () {
     return auth()->check() ? view('profile') : redirect('/login');
 });
