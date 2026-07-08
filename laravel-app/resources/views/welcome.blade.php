@@ -58,7 +58,7 @@
         <section class="film-section">
             <div class="section-header">
                 <h2>Trending</h2>
-                <a href="/films">More</a>
+                <a href="/films">Trending films</a>
             </div>
             <div class="film-row">
                 @forelse($trendingFilms as $film)
@@ -78,7 +78,7 @@
         <section class="film-section">
             <div class="section-header">
                 <h2>Popular</h2>
-                <a href="/films">More</a>
+                <a href="/films">Popular films</a>
             </div>
             <div class="film-row">
                 @forelse($popularFilms as $film)
@@ -98,7 +98,7 @@
         <section class="film-section">
             <div class="section-header">
                 <h2>Upcoming</h2>
-                <a href="/films">More</a>
+                <a href="/films">Upcoming Films</a>
             </div>
             <div class="upcoming-row">
                 @forelse($upcomingFilms as $film)
