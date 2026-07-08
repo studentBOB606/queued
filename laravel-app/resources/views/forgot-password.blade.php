@@ -36,7 +36,7 @@
         @endif
 
         <form method="POST" action="/forgot-password" class="login-form">
-            @csrf
+             @csrf
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="you@example.com" required autofocus>
